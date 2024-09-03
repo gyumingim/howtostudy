@@ -1,7 +1,7 @@
 import cv2 as cv
 
-gst_str = ("filesrc location=bottle-detection.mp4 ! decodebin ! video/x-raw ! queue ! videoconvert ! appsink")
-cap = cv.VideoCapture(gst_str, cv.CAP_GSTREAMER)
+#gst_str = ("filesrc location=bottle-detection.mp4 ! decodebin ! video/x-raw ! queue ! videoconvert ! appsink")
+cap = cv.VideoCapture(0)
 
 while cap.isOpened():
     ret, frame = cap.read()
@@ -10,7 +10,7 @@ while cap.isOpened():
         print('fail')
         break
     
-    gray = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
+    gray = cv.cvtColor(frame, cv.COLOR_BGR2LUV)
 
     cv.imshow('frame', gray)
     if cv.waitKey(1) == ord('q'):
